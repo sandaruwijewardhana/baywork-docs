@@ -1,6 +1,60 @@
 # BayWork — System Architecture
 ### Recommended Architecture for 100% Availability, Low Cost, and High Performance
-**v1.0 · May 2026**
+**v1.0 · May 2026 · Tech-stack section updated June 2026**
+
+---
+
+## 0. Full Tech Stack (source of truth)
+
+> **Read this first.** Sections 1–13 below describe the *aspirational target architecture* (React, hexagonal,
+> full AWS). This section records the **actual tech stack as built and as currently planned**, and flags where
+> it diverges from that target. Where they conflict, **this section wins.**
+
+### 0.1 Current stack — what is actually built and running
+
+| Layer | Technology | Notes |
+|-------|-----------|-------|
+| **Frontend** | **Vanilla HTML5 + CSS3 + JavaScript** (ES modules) | No framework, **no build step**; served as static files (`console/`) |
+| Frontend styling | CSS custom properties (design tokens in `brand.css`), responsive | No Tailwind/Sass |
+| Frontend API client | Hand-rolled `fetch` wrapper (`console/js/api.js`) with auto token-refresh | |
+| **Runtime** | **Node.js 20** | |
+| **Language** | **TypeScript 5.4** | `ts-node` in dev, `tsc` build |
+| **Web framework** | **Express 5** | |
+| **ORM** | **Drizzle ORM** + `drizzle-kit` | migrations, studio, push |
+| **DB driver** | **node-postgres (`pg`)** | connection pool |
+| **Database** | **PostgreSQL 15** | |
+| **Multi-tenancy** | **Schema-per-tenant** (`garage_xxxxxxxx` schemas + shared `public` registry) | isolation via `SET search_path` |
+| **Auth** | **JWT** access token + **HttpOnly refresh cookie**, `bcryptjs` hashing | refresh-token rotation, RBAC |
+| Security middleware | `helmet`, `cors`, `cookie-parser`, `express-rate-limit` | |
+| Config | `dotenv` | |
+| **Containerization** | **Docker + Docker Compose** (`db` + `api` services) | |
+| **App architecture** | **Layered monolith** (routes → Drizzle → Postgres) | *not* hexagonal (see §0.3) |
+| **Version control** | **Git** — two repos: code (root) + docs (`docs/`) | no Claude attribution on commits |
+
+### 0.2 Planned / target stack — adopt as growth justifies cost
+
+| Layer | Technology | When |
+|-------|-----------|------|
+| Hosting (lean, now) | Supabase / Railway / Cloudflare (~$45–80/mo) | Year 1–2 |
+| Hosting (scale) | **AWS**: ECS Fargate, Aurora Serverless v2, RDS Proxy, ALB, CloudFront, S3, SES | Year 3+ |
+| Real-time | **SSE** (Server-Sent Events); Redis (ElastiCache) Pub/Sub for multi-instance | when live dashboard is needed |
+| CI/CD | **GitHub Actions** (build → test → deploy) | at first real customers |
+| Infrastructure as Code | Terraform or AWS CDK | at AWS migration |
+| Monitoring | CloudWatch + **Sentry** | at launch |
+| PDF generation | client `window.print()` now; server-side (Puppeteer) later | |
+| Email / SMS | AWS SES / transactional email; local SMS gateway | as features ship |
+
+### 0.3 Divergences from the original v1 target (deliberate)
+
+| Item | v1 target (§4, §11 below) | Actual decision |
+|------|---------------------------|-----------------|
+| **Frontend framework** | React 18 + Tailwind + Zustand + TanStack Query | **Vanilla HTML/CSS/JS — and staying vanilla** (CRUD app doesn't need a SPA framework) |
+| **App architecture** | Modular Hexagonal (ports & adapters) | **Layered Express monolith** (simpler; refactor later only if needed) |
+| **Hosting** | Full AWS from day one | **Lean stack first**, migrate to AWS pieces from Year 3 as revenue covers cost |
+| **Multi-tenancy** | (some sections imply `garageId` rows) | **Schema-per-tenant** — the build is correct here |
+
+*Rationale: keep the stack boring, inspectable, and cheap while pre-revenue; add framework/cloud complexity only
+when scale or team size demands it.*
 
 ---
 
