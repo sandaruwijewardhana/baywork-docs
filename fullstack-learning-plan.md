@@ -220,4 +220,80 @@ This syllabus makes you **independent**. "Expert who answers *anything*" comes f
 
 ---
 
+# APPENDIX — Blind spots (the things you'd otherwise miss)
+
+> The 12 weeks above are the spine. These are the topics beginners **don't know to look for** — they never
+> appear in "learn X in Y" courses, but every real high-end SaaS needs them. Fold them in *as you build*.
+> Still syllabus-only: names to go learn, not explanations.
+
+## A. Real-world technical topics (weave into your builds)
+- **Dates, times & timezones** — UTC storage, DST, formatting, the #1 source of silent bugs
+- **Money & decimals** — never floats; integer cents or decimal types, rounding rules
+- **Regular expressions (regex)** — matching, capture groups, validation
+- **Unicode & encoding**, internationalization (i18n) & localization (l10n) — Sinhala/Tamil support, RTL awareness
+- **File uploads & handling** — images/PDFs, validation, storage, image resizing/processing
+- **Email** — SMTP, transactional email, templates, deliverability (SPF/DKIM), bounce handling
+- **SMS & push notifications** — gateways, delivery status, opt-out
+- **Payments** — gateway integration (Stripe / PayHere / local), webhooks, subscriptions, idempotency, refunds
+- **Background jobs & queues** — async work, scheduled/cron jobs, retries, dead-letter queues
+- **Caching strategies** — HTTP caching, Redis, cache invalidation, TTLs
+- **Full-text search** — Postgres FTS, or dedicated search engines
+- **Pagination** — offset vs cursor-based, and when each breaks
+- **Rate limiting, throttling, idempotency keys**
+- **Webhooks** — both sending and receiving/verifying
+- **Real-time** — WebSockets vs SSE vs polling, trade-offs
+- **Logging & observability** — structured logs, metrics, tracing, alerting, error tracking
+- **Config & secrets** — 12-factor app, env separation (dev/staging/prod), secret rotation
+- **API documentation** — OpenAPI/Swagger, Postman/Insomnia for testing
+- **Validation everywhere** — client AND server; never trust the client
+- **Error handling philosophy** — graceful degradation, user-friendly errors, error boundaries
+- **Database operations** — backups & restore drills, seed data, soft deletes, audit logs
+- **Migrations discipline** — never edit an applied migration; forward-only thinking
+- **Dependency hygiene** — lockfiles, `npm audit`, updating, supply-chain risk
+- **Browser DevTools mastery** — network, performance, memory, application tabs
+
+## B. Engineering craft & professional skills
+- **Clean code** — naming, small functions, when to comment
+- **Principles** — SOLID, DRY, KISS, YAGNI, separation of concerns
+- **Design patterns** — factory, strategy, observer, repository, singleton (basics)
+- **Refactoring** — safely, incrementally, backed by tests
+- **Code review** — giving and receiving feedback
+- **Git workflows** — branching strategy, PRs, conventional commits, semantic versioning
+- **Debugging methodology** — reproduce → isolate → bisect → fix; rubber-duck debugging
+- **Reading stack traces & error messages** carefully instead of guessing
+- **Reading other people's code** and large unfamiliar codebases
+- **Searching & asking well** — docs first, precise Google/Stack Overflow queries
+- **Technical writing** — READMEs, inline docs, ADRs (architecture decision records)
+- **Task breakdown & estimation** — slicing work into shippable pieces
+- **Editor/terminal efficiency** — keyboard-first, snippets, shortcuts
+- **Mental models over memorization** — understand *why*, not just *how*
+
+## C. High-end SaaS product concerns
+- **UI/UX fundamentals** — layout, hierarchy, spacing, color, typography ("Refactoring UI"); design systems
+- **Product thinking** — user stories, MVP scoping, prioritization, saying no
+- **Domain modeling / domain-driven design** basics
+- **Subscription & billing logic** — plans, upgrades/downgrades, proration, dunning, trials
+- **Admin panels & internal tools**
+- **Analytics & product metrics** — event tracking, funnels, activation/retention
+- **UX states** — onboarding, empty states, loading, error, and success states
+- **Data privacy & compliance** — GDPR-style principles, Sri Lanka PDPA, consent, retention, deletion
+- **Accessibility (WCAG)** as a product requirement, not an afterthought
+- **Audit trails & activity logs**
+- **Reliability** — backups, disaster recovery, incident response, status pages, uptime/SLAs
+- **Security posture** — secure defaults, threat modeling, penetration-testing mindset
+
+## D. Learning traps to actively avoid
+- **Tutorial hell** — watching ≠ knowing; always build from a blank file
+- **Copy-paste without understanding** — if you can't retype it, you don't know it
+- **Framework-before-fundamentals** — learn JS before React, SQL before ORMs
+- **Shiny-object syndrome** — depth over chasing new tools early
+- **Not reading official docs** — primary sources beat tutorials and AI
+- **Not shipping** — done and deployed beats perfect and local
+- **Perfectionism / premature optimization**
+- **Learning in isolation** — join communities (Discord, forums, local meetups)
+- **Skipping DSA** — needed for clean thinking and interviews
+- **Imposter syndrome & burnout** — normal; sustainable pace, sleep, and rest win the long game
+
+---
+
 *BayWork Founder Learning Plan v1.0 · A map, not the territory — the learning is in the doing.*
