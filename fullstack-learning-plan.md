@@ -1,299 +1,363 @@
-# BayWork Founder — 3-Month Full-Stack Learning Syllabus
-### From zero to building a high-end SaaS by hand (no AI)
-**v1.0 · June 2026**
+# Full-Stack Developer — Complete Learning Syllabus
+### Zero → interview-ready, whole modern stack (fundamentals + frameworks)
+**v2.0 · June 2026**
 
 > **This is a syllabus, not a textbook.** It lists *what to learn and in what order* — topic names to look up,
-> study, and practice. It deliberately contains **no explanations**; your job is to go learn each line.
+> study, and practice. No explanations here; go learn each line. (Deep teaching notes + exercises + self-tests
+> for individual topics live in [`learning/`](learning/).)
 >
-> **Honest expectation.** In 3 months of focused study (target ~6–8 hrs/day) you will not become a 10-year
-> "expert." You *will* become someone who can **build a full SaaS end-to-end unaided and understand every layer**.
-> True mastery keeps compounding after this. This plan builds the foundation that makes that inevitable.
+> **Scope change in v2.** v1 was fundamentals-only and BayWork-shaped (vanilla stack). v2 covers the **whole
+> modern full-stack surface an interview tests** — React, TypeScript, Tailwind, Next.js, state management,
+> GraphQL, testing, cloud, system design — while keeping the **fundamentals-first ordering** (interviewers
+> punish people who know React but can't explain closures or the event loop).
+>
+> **Honest timeline.** Full mastery of *everything* below is realistically **~5–6 months** at 6–8 hrs/day.
+> Your interview is ~3 months out, so see the **⏱️ 3-Month Interview-Priority Track** (right after "How to use").
+> "Expert who can answer anything" keeps compounding after — this builds the foundation that makes it inevitable.
 
 ---
 
 ## How to use this syllabus (the method)
 
-- **70% building, 30% reading.** You cannot learn to code by watching. Every week has a **build milestone** —
-  do it without copying, without AI.
-- **No AI while learning.** Use docs and your brain. AI after you already understand the concept, never before.
-- **One pass, then depth.** Learn a topic just enough to build with it, then deepen when it breaks.
-- **Teach-back test.** After each topic, explain it out loud as if teaching. If you can't, you don't know it yet.
-- **Daily rhythm:** ~2 hrs new topic reading → ~4 hrs building → ~1 hr review/notes. Keep a written notebook.
-- **Weekly:** ship the build milestone to GitHub. **Monthly:** a bigger integrated project.
+- **70% building, 30% reading.** Every module has a **build milestone** — do it from a blank file, no AI, no copy-paste.
+- **No AI while learning.** Docs + your brain. AI only *after* you already understand a concept.
+- **Fundamentals before frameworks.** Learn JS before React, SQL before ORMs, CSS before Tailwind. Non-negotiable.
+- **Teach-back test.** After each topic, explain it aloud. If you can't, you don't know it yet.
+- **Daily rhythm:** ~2 hrs new topic → ~4 hrs building → ~1 hr review/notes. Keep a written notebook.
+- **Weekly:** ship the build to GitHub. **Per phase:** one larger integrated project.
 
 ---
 
-## Core reference sources (bookmark these)
+## ⏱️ 3-Month Interview-Priority Track (do these first if time-boxed)
 
-- **Roadmaps:** roadmap.sh (Frontend, Backend, Full-Stack, DevOps, SQL)
-- **Curricula:** The Odin Project · freeCodeCamp · CS50 (Harvard) · Fullstackopen (University of Helsinki)
-- **Docs (primary sources):** MDN Web Docs · Node.js docs · Express docs · PostgreSQL docs · Drizzle ORM docs ·
-  Docker docs · TypeScript Handbook · Git (Pro Git book)
-- **Depth (later):** "You Don't Know JS" (Kyle Simpson) · "Designing Data-Intensive Applications" (Kleppmann) ·
-  "Refactoring UI" · OWASP Top 10 · "The Rust of the Web" — HTTP/networking specs
+If the interview comes before you finish everything, hit these in order — they're what most full-stack interviews actually test:
 
----
+1. **JS fundamentals cold** (Modules 1–4): closures, `this`, event loop, async/await, prototypes — *most-asked*.
+2. **TypeScript** (Module 9) — expected on almost every modern role.
+3. **React core + hooks** (Modules 10–11) — the #1 framework interviewers probe.
+4. **HTML/CSS + Tailwind + responsive** (Modules 2, 12) — live-coding a UI is common.
+5. **REST APIs + Node/Express** (Modules 5–6) — backend round.
+6. **SQL + a database** (Module 7) — joins, indexes, N+1 come up constantly.
+7. **Auth (JWT/OAuth) + web security/OWASP** (Module 18).
+8. **DSA basics + Big-O** (Module 22) — coding-round gatekeeper.
+9. **System design basics** (Module 23) — even junior roles ask "how would you build X".
+10. **Git, testing basics, one deployment** (Modules 1, 19, 20).
 
-# MONTH 1 — Foundations & Frontend
-
-## Week 1 — Computing, the web & tooling
-**Outcome: understand how code and the web physically work; be fluent in the terminal and Git.**
-- How the web works: client–server model, request/response, what a "server" is
-- HTTP basics: methods (GET/POST/PUT/PATCH/DELETE), status codes, headers, request/response anatomy
-- DNS, IP addresses, ports, URLs/URIs
-- How the internet moves data: packets, TCP vs UDP (intro), the client→DNS→server→browser journey
-- Browser fundamentals: what the browser does with HTML/CSS/JS (render pipeline, high level)
-- Number systems (binary/hex), text encoding (ASCII, UTF-8), bits vs bytes
-- Operating system & file system basics; how programs run (source → interpreter/compiler → machine)
-- **Command line / Bash:** navigation, files/dirs, permissions, pipes, redirects, env vars
-- **Git & GitHub:** repo, staging, commit, branch, merge, rebase, remote, push/pull, PRs, `.gitignore`, resolving conflicts
-- Editor mastery: VS Code — shortcuts, extensions, integrated terminal, debugger
-- **Build:** set up your dev environment; put a repo on GitHub with a proper commit history
-
-## Week 2 — HTML & CSS
-**Outcome: build any static, responsive, accessible page from a design.**
-- HTML5: semantic elements, document structure, metadata, `<head>` vs `<body>`
-- Forms: inputs, labels, validation attributes, `<select>`, `<textarea>`, buttons, form submission
-- Accessibility (a11y): semantic markup, ARIA basics, keyboard navigation, alt text
-- SEO basics: meta tags, headings hierarchy, semantic structure
-- CSS fundamentals: selectors, specificity, the cascade, inheritance, box model
-- Units (px/rem/em/%/vh/vw), colors, typography, spacing
-- **Layout: Flexbox, CSS Grid**, positioning (static/relative/absolute/fixed/sticky), z-index
-- Responsive design: media queries, mobile-first, breakpoints, fluid layouts
-- CSS custom properties (variables), transitions, transforms, animations, pseudo-classes/elements
-- CSS methodology: BEM naming, organizing stylesheets, design tokens
-- **Build:** a multi-page responsive marketing site from scratch (no framework)
-
-## Week 3 — JavaScript core
-**Outcome: make any page interactive with vanilla JS.**
-- Syntax, `var`/`let`/`const`, primitive types, type coercion, operators
-- Control flow: conditionals, loops, switch, truthy/falsy
-- Functions: declarations vs expressions, arrow functions, parameters/arguments, return
-- Scope, hoisting, closures, the `this` keyword, execution context
-- Data structures: arrays, objects, `Map`, `Set`; destructuring, spread/rest, template literals
-- Array methods: `map`, `filter`, `reduce`, `forEach`, `find`, `some`, `every`, `sort`
-- The DOM: selecting/creating/updating/removing elements, traversal
-- Events: listeners, event object, bubbling/capturing, delegation
-- Browser APIs: `localStorage`/`sessionStorage`, `fetch`, timers, `console`
-- Forms in JS: reading inputs, validation, preventing default
-- **Build:** an interactive CRUD app in the browser (e.g. task/customer manager) with persistence
-
-## Week 4 — JavaScript advanced, async & TypeScript
-**Outcome: handle asynchronous code and add type safety.**
-- The **event loop**, call stack, task queue, microtasks (deep)
-- Asynchronous JS: callbacks → Promises → `async`/`await`, error handling with try/catch
-- `fetch`/AJAX in depth, working with JSON, consuming REST APIs
-- Prototypes & prototypal inheritance; ES6 classes, inheritance, `static`
-- Higher-order functions, pure functions, immutability, functional patterns
-- Modules: ES modules (`import`/`export`) vs CommonJS
-- **TypeScript:** types, interfaces vs type aliases, unions/intersections, generics, enums, `tsconfig`, type inference, narrowing, utility types
-- **Build:** convert your Week-3 app to TypeScript; wire it to a real public API with async data
+Everything else deepens you; the above gets you through the door.
 
 ---
 
-# MONTH 2 — Backend & Databases
+## Core reference sources (bookmark)
 
-## Week 5 — Node.js & backend fundamentals
-**Outcome: understand server-side JS and build an HTTP server from scratch.**
-- Node runtime & architecture, the event loop in Node, non-blocking I/O
-- `npm`, `package.json`, dependencies vs devDependencies, semver, scripts
-- Modules in Node (CommonJS vs ESM), `require`/`import`
-- Core modules: `fs`, `path`, `http`, `os`, `events`, streams (intro), `process`, env vars
-- HTTP server from the raw `http` module: routing, parsing, responses
-- REST principles: resources, HTTP verbs/semantics, statelessness, idempotency, status codes
-- **Build:** a REST API using **only** the raw Node `http` module (no framework)
-
-## Week 6 — Express & API design
-**Outcome: build a production-shaped REST API.**
-- Express: app, routing, route params/query, `Router`, middleware chain, `next()`
-- Middleware: body parsing (JSON/urlencoded), cookies, CORS, helmet, rate limiting, logging
-- Error handling middleware, centralized errors, async error handling
-- API design: resource modeling, versioning, pagination, filtering, sorting, search
-- Request validation (Zod or Joi), DTOs, sanitization
-- Project structure: routes → controllers → services → data layer (layered architecture)
-- **Build:** a full CRUD REST API (customers/vehicles/services) with validation and error handling
-
-## Week 7 — Databases & SQL
-**Outcome: design a schema and write real SQL by hand.**
-- Relational model: tables, rows, columns, primary keys, foreign keys
-- Relationships: one-to-one, one-to-many, many-to-many (join tables)
-- **SQL:** `SELECT`, `WHERE`, `INSERT`, `UPDATE`, `DELETE`, `ORDER BY`, `LIMIT`
-- **JOINs** (inner/left/right/full), `GROUP BY`, aggregate functions, `HAVING`, subqueries, CTEs
-- Data modeling & **normalization** (1NF/2NF/3NF), when to denormalize
-- Indexes (B-tree, when/why), constraints (unique, not null, check), transactions & ACID
-- PostgreSQL specifics: data types, `ENUM`, schemas, `psql` CLI, `EXPLAIN` (intro)
-- **Build:** design a normalized schema on paper, create it in Postgres, and query it entirely in `psql`
-
-## Week 8 — ORM & full-stack integration
-**Outcome: connect frontend ↔ API ↔ database into one working app.**
-- ORMs vs raw SQL: trade-offs; query builders
-- **Drizzle ORM:** schema definitions, `select`/`insert`/`update`/`delete`, relations, joins
-- **Migrations:** `drizzle-kit`, schema changes, versioning the database
-- Connection pooling, transactions in code, the **N+1 query** problem
-- Multi-tenancy patterns: shared-schema (tenant_id) vs **schema-per-tenant** (your architecture)
-- Wiring it together: vanilla frontend → `fetch` → Express → Drizzle → Postgres
-- **Build:** a complete full-stack CRUD app (frontend + API + Postgres + Drizzle), end to end
+- **Roadmaps:** roadmap.sh (Frontend, Backend, Full-Stack, DevOps, React, System Design)
+- **Curricula:** The Odin Project · freeCodeCamp · Fullstackopen (Helsinki) · CS50
+- **Primary docs:** MDN · TypeScript Handbook · **React docs (react.dev)** · **Next.js docs** · **Tailwind docs** ·
+  Node.js · Express · NestJS · PostgreSQL · **Prisma** · Drizzle · Redis · MongoDB · Docker · Kubernetes · **GraphQL.org** ·
+  TanStack Query · Redux Toolkit · Vite · Jest/Vitest · Playwright · Git (Pro Git)
+- **Depth (later):** "You Don't Know JS" · "Designing Data-Intensive Applications" · "Refactoring UI" · OWASP Top 10 ·
+  "System Design Interview" (Alex Xu) · "Cracking the Coding Interview"
 
 ---
 
-# MONTH 3 — Auth, Security, DevOps, Architecture & CS depth
+# PHASE 0 — Foundations (Weeks 1–4)
 
-## Week 9 — Authentication, authorization & web security
-**Outcome: build a secure auth system and know how apps get attacked.**
-- Password security: hashing vs encryption, **bcrypt**, salting, why never plain-text
-- Sessions vs tokens; cookies (HttpOnly, Secure, SameSite), CSRF implications
-- **JWT:** structure (header/payload/signature), signing/verification, expiry, access vs refresh tokens, rotation
-- Authorization: role-based access control (RBAC), middleware guards, least privilege
-- **Web security — OWASP Top 10:** XSS, SQL injection, CSRF, broken auth, insecure config
-- HTTPS/TLS, CORS in depth, secrets management, input validation as defense
-- **Build:** a complete auth system — register, login, refresh, logout, protected routes, roles
+## Module 1 — Computing, the web & tooling
+- Web basics: client–server, request/response, what a server is *(→ notes in `learning/`)*
+- HTTP: methods, status codes, headers, request/response anatomy
+- DNS, IP, ports, URLs/URIs; TCP vs UDP (intro); browser render pipeline (high level)
+- Number systems, text encoding (ASCII/UTF-8), how code runs (compile vs interpret)
+- **Command line / Bash**; **Git & GitHub** (branch, merge, rebase, remote, PR, conflicts)
+- **Package managers:** npm vs pnpm vs yarn; `package.json`, semver, lockfiles
+- Editor mastery (VS Code), **ESLint + Prettier**, EditorConfig
+- **Build:** environment set up; repo on GitHub with clean history
 
-## Week 10 — DevOps & deployment
-**Outcome: containerize and ship an app to the public internet.**
-- **Docker:** images vs containers, `Dockerfile`, layers, `docker-compose`, volumes, networks, env config
-- Linux server basics: shell, processes, logs, package managers, permissions
-- Reverse proxies (nginx), HTTPS certificates (Let's Encrypt), domains & DNS records
-- Hosting models: PaaS (Railway, Supabase, Render) vs IaaS (AWS EC2/ECS); managed databases
-- Cloud building blocks: object storage (S3), CDN (CloudFront/Cloudflare), load balancers
-- **CI/CD:** GitHub Actions — build, test, deploy pipelines; environment secrets
-- Monitoring & logging basics; error tracking (Sentry)
-- **Build:** dockerize your full-stack app and deploy it live with a real domain + HTTPS
+## Module 2 — HTML & CSS (+ preprocessors)
+- HTML5 semantics, forms, inputs, accessibility (a11y/ARIA), SEO basics
+- CSS: selectors, specificity, cascade, box model, units, colors, typography
+- **Layout: Flexbox + Grid**, positioning, responsive/mobile-first, media queries
+- Custom properties, transitions, transforms, animations, pseudo-classes/elements
+- CSS methodology: BEM; **Sass/SCSS** (variables, nesting, mixins); CSS Modules (awareness)
+- **Build:** a multi-page responsive site from scratch
 
-## Week 11 — Computer science foundations
-**Outcome: the theory that lets you answer "any question" and pass interviews.**
-- **Data structures:** arrays, linked lists, stacks, queues, hash tables/maps, trees, binary search trees, heaps, graphs
-- **Algorithms:** Big-O notation (time/space complexity), recursion, sorting, searching, common patterns (two-pointer, sliding window, BFS/DFS)
-- **Networking deep:** TCP/IP model, TCP handshake, HTTP/1.1 vs HTTP/2 vs HTTP/3, TLS handshake, DNS resolution, sockets, the 4-tuple
-- **Operating systems:** processes vs threads, concurrency vs parallelism, memory (stack/heap), scheduling, I/O, file systems
-- **How databases work inside:** B-tree indexes, query planning/optimization, transactions, MVCC, WAL, isolation levels
-- Caching concepts: memory hierarchy, cache invalidation, Redis basics
+## Module 3 — JavaScript core
+- Types, coercion, operators, control flow; functions, arrow functions
+- **Scope, hoisting, closures, `this`, execution context** *(most-asked interview area)*
+- Arrays/objects, `Map`/`Set`, destructuring, spread/rest, template literals
+- Array methods (`map`/`filter`/`reduce`/`find`/`sort`…)
+- DOM manipulation, events (bubbling/capturing/delegation), `localStorage`, `fetch`
+- **Build:** interactive vanilla-JS CRUD app with persistence
 
-## Week 12 — System design, architecture & capstone
-**Outcome: design a scalable SaaS and prove you can build one solo.**
-- Architecture patterns: monolith, layered, **hexagonal (ports & adapters)**, microservices, event-driven — and when each is right
-- Scalability: statelessness, horizontal vs vertical scaling, load balancing, caching layers, database replication/sharding (concepts)
-- **System design:** how to design a SaaS from requirements → components → data model → trade-offs; CAP theorem; message queues; real-time (WebSockets vs SSE)
-- API paradigms: REST vs GraphQL vs gRPC (when each)
-- **Testing:** unit / integration / end-to-end, test-driven development (TDD) basics, tools (Jest, Vitest, Playwright)
-- Performance: profiling, database query optimization, frontend performance (Core Web Vitals)
-- **CAPSTONE:** rebuild a full SaaS (BayWork-scale: auth, multi-tenant, CRUD across 4–5 modules, invoicing, dashboard) **solo, from an empty folder, with zero AI.** This is the graduation exam.
+## Module 4 — JavaScript advanced & async
+- **Event loop**, call stack, task vs microtask queue (deep)
+- Callbacks → **Promises → async/await**, error handling, `Promise.all/race/allSettled`
+- Prototypes & prototypal inheritance; ES6 classes; `this` binding, `call`/`apply`/`bind`
+- Higher-order & pure functions, immutability, currying (awareness)
+- Modules (ESM vs CommonJS), generators/iterators (awareness)
+- **Build:** app consuming a public API with real async data flows
+
+---
+
+# PHASE 1 — Core Full-Stack, no framework (Weeks 5–8)
+
+## Module 5 — Node.js & backend fundamentals
+- Node runtime, event loop in Node, non-blocking I/O
+- Core modules: `http`, `fs`, `path`, `events`, streams, `process`, env vars
+- Modules, npm scripts; build an HTTP server from the **raw `http` module**
+- REST principles: resources, verbs/semantics, statelessness, idempotency, status codes
+- **Build:** REST API with no framework
+
+## Module 6 — Express & API design
+- Routing, middleware chain, `next()`, routers, error middleware
+- Body/cookie parsing, **CORS**, helmet, rate limiting, logging
+- API design: versioning, pagination, filtering, sorting, search
+- **Validation** with Zod/Joi; layered structure (routes → controllers → services)
+- **Build:** full CRUD REST API with validation + error handling
+
+## Module 7 — Databases & SQL (+ NoSQL intro)
+- Relational model, keys, relationships (1:1, 1:N, N:M)
+- **SQL:** SELECT/INSERT/UPDATE/DELETE, **JOINs**, GROUP BY, aggregates, subqueries, CTEs
+- **Data modeling & normalization** (1NF–3NF), denormalization, **indexes**, constraints
+- **Transactions & ACID**, isolation levels (intro); PostgreSQL specifics, `psql`, `EXPLAIN`
+- **NoSQL intro:** document vs key-value vs wide-column vs graph; when relational vs NoSQL
+- **Build:** design + query a Postgres DB by hand
+
+## Module 8 — ORMs & full-stack integration
+- ORM vs query builder vs raw SQL; the **N+1 problem**
+- **Drizzle** and **Prisma** (schema, queries, relations, **migrations**) — know both
+- Connection pooling, transactions in code
+- Multi-tenancy: shared-schema vs schema-per-tenant
+- **Build:** full-stack CRUD (vanilla frontend + Express + Postgres + ORM), end to end
+
+---
+
+# PHASE 2 — Modern Frontend Framework Stack (Weeks 9–13)
+
+## Module 9 — TypeScript (deep)
+- Types, interfaces vs type aliases, unions/intersections, literals, enums
+- **Generics**, type inference, narrowing, type guards, discriminated unions
+- Utility types (`Partial`, `Pick`, `Omit`, `Record`, `ReturnType`…), `keyof`, mapped/conditional types
+- `tsconfig`, strict mode, declaration files, typing 3rd-party libs
+- TS with Node and with React (typing props, hooks, events)
+- **Build:** convert a prior JS project fully to strict TypeScript
+
+## Module 10 — React fundamentals
+- Why frameworks exist; SPA concept; **JSX**, the virtual DOM, reconciliation
+- Components, props, composition, conditional & list rendering, keys
+- **State: `useState`**; events; controlled inputs/forms
+- **`useEffect`**, effect dependencies, cleanup, the render lifecycle
+- Lifting state up; component design; **Vite** project setup
+- **Build:** a multi-component React app (e.g. the BayWork console UI, in React)
+
+## Module 11 — React advanced
+- Hooks deep: `useContext`, `useRef`, `useMemo`, `useCallback`, `useReducer`, **custom hooks**
+- **Performance:** re-render causes, memoization, `React.memo`, keys, code-splitting/lazy
+- Patterns: compound components, render props, HOCs (awareness), error boundaries, portals
+- **Forms:** React Hook Form + **Zod** validation; **routing:** React Router
+- **Build:** a data-driven dashboard with routing, forms, and custom hooks
+
+## Module 12 — Styling & UI systems
+- **Tailwind CSS** (utility-first, config, responsive, dark mode, `@apply`)
+- Component libraries: **shadcn/ui**, Radix, MUI, Chakra (pick one, know the landscape)
+- CSS-in-JS (styled-components/Emotion — awareness), CSS Modules
+- Design systems, tokens, theming; **Refactoring UI** principles; accessibility in components
+- **Build:** rebuild your dashboard's UI with Tailwind + a component library
+
+## Module 13 — State management & data fetching
+- Local vs global state; **Context** limits; when you need a store
+- **Redux Toolkit** (store, slices, reducers, thunks) and **Zustand** — know both
+- **TanStack Query (React Query):** server state, caching, invalidation, mutations, optimistic updates
+- Forms state, URL state; build tools (**Vite** deep, esbuild/Webpack awareness)
+- **Build:** wire the React app to your Express API using TanStack Query + a store
+
+---
+
+# PHASE 3 — Meta-Framework & Advanced Backend (Weeks 14–17)
+
+## Module 14 — Next.js (the full-stack React framework)
+- App Router, file-based routing, layouts, loading/error UI
+- **Rendering models:** CSR, **SSR, SSG, ISR**, streaming; **React Server Components**
+- Server Actions, Route Handlers (API routes), data fetching & caching
+- Middleware, metadata/SEO, image/font optimization, env config
+- Deployment (Vercel); Remix (awareness)
+- **Build:** rebuild the app as a Next.js full-stack app (SSR + API routes)
+
+## Module 15 — Modern backend frameworks & architecture
+- **NestJS** (modules, controllers, providers, DI, guards, pipes) and/or **Fastify**; Express recap
+- Layered vs **Hexagonal (ports & adapters)** vs MVC; dependency injection
+- **Prisma** deep (relations, migrations, transactions); repository pattern
+- Background jobs & schedulers (BullMQ / cron)
+- **Build:** re-architect the API in NestJS (or clean layered Express) with DI
+
+## Module 16 — API paradigms & real-time
+- REST recap; **GraphQL** (schema, resolvers, queries/mutations, Apollo Server/Client, N+1/DataLoader)
+- **tRPC** (end-to-end type safety); gRPC & protobuf (awareness)
+- **Real-time:** WebSockets, **Socket.io**, Server-Sent Events, polling — trade-offs
+- Webhooks (send + receive/verify), idempotency keys
+- **Build:** add a GraphQL endpoint and a real-time feature (live updates) to the app
+
+## Module 17 — NoSQL, caching & messaging
+- **MongoDB** (documents, collections, Mongoose, aggregation) — when to use vs SQL
+- **Redis:** caching patterns, sessions, pub/sub, rate limiting; cache invalidation
+- Message queues: BullMQ, RabbitMQ, **Kafka** (concepts, when each)
+- Search: Postgres full-text, Elasticsearch (awareness)
+- **Build:** add Redis caching + a queue-backed background job to the app
+
+---
+
+# PHASE 4 — Auth, Testing, DevOps & Cloud (Weeks 18–21)
+
+## Module 18 — Authentication, authorization & security
+- Password hashing (**bcrypt/argon2**), salting
+- Sessions vs tokens; **JWT** (structure, signing, expiry, refresh, rotation); cookies (HttpOnly/SameSite/Secure)
+- **OAuth 2.0 & OpenID Connect** (flows); providers: **NextAuth/Auth.js, Auth0, Clerk**
+- RBAC/ABAC, middleware guards; **OWASP Top 10** (XSS, CSRF, SQLi, SSRF…), HTTPS/TLS, CORS, secrets
+- **Build:** full auth (email/password + one OAuth provider + roles + protected routes)
+
+## Module 19 — Testing
+- Test types: **unit / integration / e2e**; the testing pyramid; **TDD**
+- **Jest / Vitest** (assertions, mocks, spies, coverage)
+- **React Testing Library** (component tests, user-event); API/integration testing (supertest)
+- **e2e: Playwright / Cypress**; mocking (MSW); CI test runs
+- **Build:** add a real test suite (unit + component + one e2e flow) to the app
+
+## Module 20 — DevOps & deployment
+- **Docker** deep: images, layers, multi-stage builds, `docker-compose`, volumes, networks
+- Linux basics, **Nginx** reverse proxy, HTTPS (Let's Encrypt), domains/DNS
+- **CI/CD: GitHub Actions** (build → test → deploy), environments, secrets
+- Hosting: Vercel/Netlify (frontend), Railway/Render/Fly (backend), managed DBs
+- Monorepos: Turborepo/Nx (awareness); env management, 12-factor app
+- **Build:** dockerize + deploy the full app with a CI/CD pipeline and real domain + HTTPS
+
+## Module 21 — Cloud & scaling
+- **AWS core:** EC2, S3, RDS/Aurora, Lambda, CloudFront, ALB, IAM, ECS/Fargate (concepts + one hands-on)
+- **Serverless** model; **Kubernetes** (pods, services, deployments — intro/awareness)
+- **Infrastructure as Code:** Terraform basics
+- **Observability:** structured logging, metrics, tracing, alerting; **Sentry**
+- CDN, caching layers, load balancing, autoscaling, blue-green/rolling deploys
+- **Build:** deploy a piece to AWS (e.g. S3+CloudFront static, or a Lambda) + add Sentry
+
+---
+
+# PHASE 5 — CS Foundations, System Design & Interview Prep (Weeks 22–24)
+
+## Module 22 — Computer science foundations
+- **Data structures:** arrays, linked lists, stacks, queues, hash tables, trees, BSTs, heaps, graphs, tries
+- **Algorithms:** **Big-O**, recursion, sorting, searching, patterns (two-pointer, sliding window, BFS/DFS, DP intro)
+- **Networking deep:** TCP/IP, TCP handshake, HTTP/1.1 vs 2 vs 3, **TLS handshake**, DNS, sockets, the 4-tuple
+- **OS:** processes vs threads, concurrency vs parallelism, memory (stack/heap), scheduling, I/O
+- **DB internals:** B-tree indexes, query planning, **MVCC**, WAL, isolation levels
+
+## Module 23 — System design & architecture
+- Architecture: monolith, **layered, hexagonal, microservices, event-driven, CQRS**, serverless — when each
+- **Domain-Driven Design** basics; API gateway; service communication (sync vs async)
+- **Scalability:** statelessness, horizontal/vertical scaling, load balancing, replication, **sharding/partitioning**
+- Caching strategies, **CAP theorem**, consistency models, message queues, idempotency
+- Designing a SaaS end to end: requirements → components → data model → trade-offs
+- Real-time at scale, rate limiting, multi-tenancy, observability
+- **Practice:** design 5–8 classic systems (URL shortener, chat, feed, rate limiter, e-commerce, the BayWork SaaS)
+
+## Module 24 — Interview preparation
+- **DSA grind:** LeetCode (easy → medium) daily; patterns over memorization; timed practice
+- **System design mocks:** whiteboard the designs from Module 23 out loud
+- **Behavioral:** STAR method, project deep-dives, "tell me about a hard bug"
+- **Framework trivia:** React internals, TS gotchas, HTTP/DB Q&A drills
+- **Mock interviews** (peer, Pramp/interviewing.io); portfolio + README polish
+- **CAPSTONE:** ship a full production-grade SaaS (React/Next + typed API + DB + auth + tests + deployed), solo, no AI
 
 ---
 
 ## Cross-cutting threads (practice *every* week, not once)
-- **Git** — commit daily, branch per feature, write clean messages
-- **Debugging** — browser devtools, Node debugger, reading stack traces, `console`/breakpoints
-- **Reading official docs** — build the habit of primary sources over tutorials
-- **Writing** — keep notes/explanations in your own words (this cements knowledge)
-- **Data structures & algorithms** — 2–3 practice problems/week (LeetCode easy→medium) from Week 4 on
-
----
-
-## "Can I answer any question?" — self-assessment checklist
-By the end you should be able to **explain out loud, with examples**, every item below. If you can't, revisit it.
-
-- [ ] What happens, end to end, when you type a URL and press Enter
-- [ ] How the JS event loop schedules sync vs async work
-- [ ] Difference between `let`/`const`/`var`, closures, and `this`
-- [ ] How the box model, flexbox, and grid lay out a page
-- [ ] What a REST API is and why status codes/verbs matter
-- [ ] How JWT auth works and why refresh tokens exist
-- [ ] SQL joins, normalization, and when to add an index
-- [ ] What an ORM does and the N+1 problem
-- [ ] How schema-per-tenant isolation works (your own architecture)
-- [ ] What Docker containers are and how they differ from VMs
-- [ ] Big-O of common operations on arrays/maps/trees
-- [ ] TCP vs UDP, the TLS handshake, HTTP/2 vs HTTP/1.1
-- [ ] Processes vs threads; how transactions/MVCC keep data consistent
-- [ ] Monolith vs microservices vs hexagonal — and the trade-offs
-- [ ] How you'd design a scalable multi-tenant SaaS from scratch
-
----
-
-## After the 3 months (the real path to "expert")
-This syllabus makes you **independent**. "Expert who answers *anything*" comes from what follows:
-- Build 3–5 more real projects of increasing complexity
-- Read **"Designing Data-Intensive Applications"** cover to cover
-- Contribute to open source; read other people's production code
-- Go deep on one specialty (databases, distributed systems, or frontend performance)
-- Repetition over time — expertise is accumulated reps, not a 90-day sprint
+- **Git** — commit daily, feature branches, conventional commits, clean PRs
+- **TypeScript** — once learned (Module 9), use it everywhere after
+- **Debugging** — DevTools, Node debugger, stack traces, breakpoints, bisection
+- **Testing** — write tests alongside features once you learn them
+- **Reading docs & others' code** — primary sources over tutorials/AI
+- **DSA** — 3–5 problems/week from Module 4 onward
+- **Writing** — notes/explanations in your own words (cements knowledge)
 
 ---
 
 # APPENDIX — Blind spots (the things you'd otherwise miss)
 
-> The 12 weeks above are the spine. These are the topics beginners **don't know to look for** — they never
-> appear in "learn X in Y" courses, but every real high-end SaaS needs them. Fold them in *as you build*.
-> Still syllabus-only: names to go learn, not explanations.
+> The modules above are the spine. These are topics beginners **don't know to look for** — they never appear in
+> "learn X" courses but every real high-end SaaS needs them. Fold in *as you build*. Syllabus-only.
 
-## A. Real-world technical topics (weave into your builds)
-- **Dates, times & timezones** — UTC storage, DST, formatting, the #1 source of silent bugs
-- **Money & decimals** — never floats; integer cents or decimal types, rounding rules
-- **Regular expressions (regex)** — matching, capture groups, validation
-- **Unicode & encoding**, internationalization (i18n) & localization (l10n) — Sinhala/Tamil support, RTL awareness
-- **File uploads & handling** — images/PDFs, validation, storage, image resizing/processing
-- **Email** — SMTP, transactional email, templates, deliverability (SPF/DKIM), bounce handling
-- **SMS & push notifications** — gateways, delivery status, opt-out
+## A. Real-world technical topics
+- **Dates, times & timezones** (UTC storage, DST) — the #1 silent bug source
+- **Money & decimals** — never floats; integer cents / decimal types
+- **Regular expressions (regex)**
+- **Unicode & encoding**, i18n & l10n (Sinhala/Tamil, RTL)
+- **File uploads** — images/PDFs, validation, storage, resizing
+- **Email** — SMTP, transactional, templates, deliverability (SPF/DKIM), bounces
+- **SMS & push notifications**
 - **Payments** — gateway integration (Stripe / PayHere / local), webhooks, subscriptions, idempotency, refunds
-- **Background jobs & queues** — async work, scheduled/cron jobs, retries, dead-letter queues
-- **Caching strategies** — HTTP caching, Redis, cache invalidation, TTLs
-- **Full-text search** — Postgres FTS, or dedicated search engines
-- **Pagination** — offset vs cursor-based, and when each breaks
-- **Rate limiting, throttling, idempotency keys**
-- **Webhooks** — both sending and receiving/verifying
-- **Real-time** — WebSockets vs SSE vs polling, trade-offs
+- **Background jobs & queues** — retries, dead-letter queues, cron
+- **Caching** — HTTP caching, Redis, invalidation, TTLs
+- **Full-text search**; **pagination** (offset vs cursor); **rate limiting / throttling / idempotency**
+- **Webhooks** (send + receive/verify)
+- **Real-time** — WebSockets vs SSE vs polling
 - **Logging & observability** — structured logs, metrics, tracing, alerting, error tracking
-- **Config & secrets** — 12-factor app, env separation (dev/staging/prod), secret rotation
-- **API documentation** — OpenAPI/Swagger, Postman/Insomnia for testing
-- **Validation everywhere** — client AND server; never trust the client
-- **Error handling philosophy** — graceful degradation, user-friendly errors, error boundaries
-- **Database operations** — backups & restore drills, seed data, soft deletes, audit logs
-- **Migrations discipline** — never edit an applied migration; forward-only thinking
-- **Dependency hygiene** — lockfiles, `npm audit`, updating, supply-chain risk
-- **Browser DevTools mastery** — network, performance, memory, application tabs
+- **Config & secrets** — 12-factor, env separation, secret rotation
+- **API docs** — OpenAPI/Swagger, Postman/Insomnia
+- **Validation everywhere** (client AND server); **error handling philosophy**
+- **DB ops** — backups & restore drills, seed data, soft deletes, audit logs, **migrations discipline**
+- **Dependency hygiene** — lockfiles, `npm audit`, supply-chain risk
+- **Browser DevTools mastery**
 
 ## B. Engineering craft & professional skills
-- **Clean code** — naming, small functions, when to comment
-- **Principles** — SOLID, DRY, KISS, YAGNI, separation of concerns
-- **Design patterns** — factory, strategy, observer, repository, singleton (basics)
-- **Refactoring** — safely, incrementally, backed by tests
-- **Code review** — giving and receiving feedback
-- **Git workflows** — branching strategy, PRs, conventional commits, semantic versioning
-- **Debugging methodology** — reproduce → isolate → bisect → fix; rubber-duck debugging
-- **Reading stack traces & error messages** carefully instead of guessing
-- **Reading other people's code** and large unfamiliar codebases
-- **Searching & asking well** — docs first, precise Google/Stack Overflow queries
-- **Technical writing** — READMEs, inline docs, ADRs (architecture decision records)
-- **Task breakdown & estimation** — slicing work into shippable pieces
-- **Editor/terminal efficiency** — keyboard-first, snippets, shortcuts
-- **Mental models over memorization** — understand *why*, not just *how*
+- Clean code; **SOLID, DRY, KISS, YAGNI**; separation of concerns
+- **Design patterns** (factory, strategy, observer, repository, singleton…)
+- Refactoring safely (with tests); **code review**; Git workflows; semantic versioning
+- Debugging methodology; reading stack traces & unfamiliar codebases
+- Searching & asking well; **technical writing** (READMEs, ADRs)
+- Task breakdown & estimation; editor/terminal efficiency; mental models over memorization
 
 ## C. High-end SaaS product concerns
-- **UI/UX fundamentals** — layout, hierarchy, spacing, color, typography ("Refactoring UI"); design systems
-- **Product thinking** — user stories, MVP scoping, prioritization, saying no
-- **Domain modeling / domain-driven design** basics
-- **Subscription & billing logic** — plans, upgrades/downgrades, proration, dunning, trials
-- **Admin panels & internal tools**
-- **Analytics & product metrics** — event tracking, funnels, activation/retention
-- **UX states** — onboarding, empty states, loading, error, and success states
-- **Data privacy & compliance** — GDPR-style principles, Sri Lanka PDPA, consent, retention, deletion
-- **Accessibility (WCAG)** as a product requirement, not an afterthought
-- **Audit trails & activity logs**
-- **Reliability** — backups, disaster recovery, incident response, status pages, uptime/SLAs
-- **Security posture** — secure defaults, threat modeling, penetration-testing mindset
+- **UI/UX fundamentals** (layout, hierarchy, spacing, type, color; design systems)
+- Product thinking; MVP scoping; **domain modeling / DDD**
+- **Subscription & billing** (plans, proration, dunning, trials); admin panels
+- Analytics & product metrics; UX states (onboarding, empty, loading, error, success)
+- **Data privacy & compliance** (GDPR, Sri Lanka PDPA), consent, retention
+- **Accessibility (WCAG)**; audit trails; reliability (backups, DR, incident response, status pages, SLAs)
+- Security posture (secure defaults, threat modeling, pen-test mindset)
 
-## D. Learning traps to actively avoid
-- **Tutorial hell** — watching ≠ knowing; always build from a blank file
-- **Copy-paste without understanding** — if you can't retype it, you don't know it
-- **Framework-before-fundamentals** — learn JS before React, SQL before ORMs
-- **Shiny-object syndrome** — depth over chasing new tools early
-- **Not reading official docs** — primary sources beat tutorials and AI
-- **Not shipping** — done and deployed beats perfect and local
-- **Perfectionism / premature optimization**
-- **Learning in isolation** — join communities (Discord, forums, local meetups)
-- **Skipping DSA** — needed for clean thinking and interviews
-- **Imposter syndrome & burnout** — normal; sustainable pace, sleep, and rest win the long game
+## D. Learning traps to avoid
+- **Tutorial hell** (watching ≠ knowing) — always build from a blank file
+- Copy-paste without understanding; **framework-before-fundamentals**
+- Shiny-object syndrome; not reading official docs; **not shipping**
+- Learning in isolation (join communities); skipping DSA; imposter syndrome & burnout — sustainable pace wins
 
 ---
 
-*BayWork Founder Learning Plan v1.0 · A map, not the territory — the learning is in the doing.*
+## "Can I answer any question?" — self-assessment (must explain each, out loud, with examples)
+- [ ] URL → Enter → page: the full journey · client–server · request/response
+- [ ] Event loop; sync vs async; promises/async-await; microtasks
+- [ ] `let`/`const`/`var`, closures, `this`, prototypes
+- [ ] Box model, Flexbox, Grid; responsive; **Tailwind utility model**
+- [ ] **React:** JSX, virtual DOM, reconciliation, hooks, re-render/perf, when effects run
+- [ ] **TypeScript:** generics, narrowing, utility types
+- [ ] **Next.js:** CSR vs SSR vs SSG vs ISR; RSC; server actions
+- [ ] REST vs GraphQL vs tRPC; status codes/verbs
+- [ ] SQL joins, normalization, indexes, transactions/isolation; N+1
+- [ ] SQL vs NoSQL trade-offs; Redis caching
+- [ ] JWT vs sessions; OAuth 2.0/OIDC; OWASP Top 10
+- [ ] Testing pyramid; unit vs integration vs e2e
+- [ ] Docker vs VM; CI/CD; one cloud deploy; Kubernetes basics
+- [ ] Big-O; core data structures & their operations
+- [ ] TCP vs UDP, TLS handshake, HTTP/2 vs 1.1
+- [ ] Processes vs threads; MVCC/transactions
+- [ ] Monolith vs microservices vs hexagonal; CAP; scaling; sharding
+- [ ] Design a scalable multi-tenant SaaS from scratch
+
+---
+
+## After the plan (the real path to "expert")
+- Build 3–5 more real projects of rising complexity
+- Read **"Designing Data-Intensive Applications"** and **"System Design Interview"** cover to cover
+- Contribute to open source; read production codebases
+- Go deep on one specialty (frontend perf, databases, or distributed systems)
+- Repetition over time — expertise is accumulated reps, not a sprint
+
+---
+
+*Full-Stack Learning Syllabus v2.0 · A map, not the territory — the learning is in the doing.*
