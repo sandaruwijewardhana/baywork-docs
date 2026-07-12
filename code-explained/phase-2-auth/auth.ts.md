@@ -15,9 +15,172 @@
 You cannot rewrite this file by memorizing characters. You rewrite it by **understanding six ideas** and then the code writes itself. Learn these first.
 
 ### Theory 1 — HTTP request/response & REST
-- A **request** arrives with: a **method** (`POST`/`GET`), a **path** (`/login`), **headers**, and a **body** (JSON data).
-- Your handler sends a **response**: a **status code** (200 ok, 400 bad request, 401 unauthorized, 409 conflict, 201 created) + a **body** (JSON).
-- **REST convention:** `POST` = "create/do an action" (login, register), `GET` = "read" (me). Status codes communicate the outcome so the frontend knows what happened.
+
+At its core, web development is about computers talking to each other. In our app, the client (the frontend running in the user's browser) talks to the server (our Express backend) using the **HTTP (Hypertext Transfer Protocol)**. 
+
+#### 1. The Request-Response Cycle
+HTTP works as a simple conversation: the client sends a **Request**, and the server must send back a **Response**. The server *never* speaks unless spoken to.
+
+```mermaid
+sequenceDiagram
+    Client (Frontend)->>Server (Backend): HTTP Request (Method, Path, Headers, Body)
+    Note over Server (Backend): Processes Request (DB, logic, etc.)
+    Server (Backend)->>Client (Frontend): HTTP Response (Status Code, Headers, Body)
+```
+
+---
+
+#### 2. Anatomy of an HTTP Request
+Every request sent by the frontend contains four critical parts:
+1. **Method (Verb)**: Tells the server what kind of action is being performed.
+   - `GET`: Used to **retrieve/read** data. It should be "safe" and "idempotent" (calling it multiple times doesn't change database state). E.g., `GET /api/auth/me`.
+   - `POST`: Used to **create** a new resource or perform a **state-changing action** (like logging in, refreshing tokens, or logging out). E.g., `POST /api/auth/login`.
+   - `PUT` / `PATCH`: Used to update existing data.
+   - `DELETE`: Used to remove data.
+2. **Path (Route/URL)**: Specifies the exact endpoint/resource we want to target. E.g., `/api/auth/login`.
+3. **Headers**: Key-value pairs containing metadata about the request.
+   - `Content-Type: application/json` tells the server "the body I'm sending you is formatted as JSON."
+   - `Cookie: refresh_token=abc...` sends cookies stored in the browser back to the server.
+   - `Authorization: Bearer <access_token>` sends the token that proves identity.
+4. **Body**: The actual data payload, usually formatted as a JSON string. E.g., `{"email": "owner@garage.com", "password": "Password123"}`. `GET` requests usually do not have a body.
+
+---
+
+#### 3. Anatomy of an HTTP Response
+Every response returned by our backend contains three main parts:
+1. **Status Code**: A standard 3-digit number indicating the outcome of the request. The browser and the frontend code use this code to know immediately what happened.
+   - **`200 OK`**: The action succeeded and data is returned. (Used for successful logins, logouts, token refresh, and getting user info).
+   - **`201 Created`**: A new resource was successfully created. (Used when a registration request is successfully submitted).
+   - **`400 Bad Request`**: The client sent invalid data. E.g., they forgot to enter their email or password.
+   - **`401 Unauthorized`**: Authentication failed. E.g., wrong password, expired token, or missing credentials.
+   - **`403 Forbidden`**: The server knows who you are, but you do not have permission to view or do this.
+   - **`404 Not Found`**: The resource doesn't exist. E.g., trying to fetch a user profile that was deleted.
+   - **`409 Conflict`**: The request could not be processed due to a conflict with the server's current state. E.g., trying to register with an email that is already in use.
+   - **`500 Internal Server Error`**: A crash or database error on the backend. The developer made a mistake or the server went down.
+2. **Headers**: Metadata about the response.
+   - `Set-Cookie: refresh_token=abc...; HttpOnly; Secure` instructs the browser to save a cookie and protect it from JavaScript.
+   - `Content-Type: application/json` tells the client "the response body is JSON."
+3. **Body**: The data payload returned. E.g., `{ "accessToken": "xyz..." }` or `{ "error": "Invalid credentials" }`.
+
+---
+
+#### 4. REST Conventions (Representational State Transfer)
+REST is an architectural style for designing APIs. It establishes rules to make APIs predictable:
+- **Statelessness**: The server doesn't "remember" past requests. Each request must carry all the info it needs (like authentication tokens).
+- **Resource-Oriented Paths**: Use nouns, not verbs, for endpoints (e.g., `/api/cars` instead of `/api/get-all-cars`).
+- **HTTP Methods map to actions**:
+  - `POST /api/auth/register` creates a registration.
+  - `POST /api/auth/login` creates a session/token.
+  - `GET /api/auth/me` reads the current user's profile.
+  - `POST /api/auth/logout` destroys/deletes the session/token.
+
+---
+
+#### 5. Concrete Examples (HTTP Dumps)
+
+##### Example A: Successful Login (`POST /api/auth/login`)
+**Request sent by Frontend:**
+```http
+POST /api/auth/login HTTP/1.1
+Host: baywork.api.com
+Content-Type: application/json
+
+{
+  "email": "owner@garage.com",
+  "password": "Password123"
+}
+```
+
+**Response returned by Backend:**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Set-Cookie: refresh_token=eyJhbGciOi...; Max-Age=604800; Path=/api/auth; HttpOnly; SameSite=Strict
+
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": 42,
+    "name": "Jane Owner",
+    "email": "owner@garage.com",
+    "role": "owner"
+  }
+}
+```
+
+##### Example B: Login Failure - Missing Inputs (`POST /api/auth/login`)
+**Request sent by Frontend:**
+```http
+POST /api/auth/login HTTP/1.1
+Host: baywork.api.com
+Content-Type: application/json
+
+{
+  "email": "owner@garage.com"
+}
+```
+
+**Response returned by Backend:**
+```http
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+
+{
+  "error": "Email and password required"
+}
+```
+
+##### Example C: Reading Profile (`GET /api/auth/me`)
+**Request sent by Frontend:**
+```http
+GET /api/auth/me HTTP/1.1
+Host: baywork.api.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+**Response returned by Backend:**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{
+  "id": 42,
+  "name": "Jane Owner",
+  "email": "owner@garage.com",
+  "role": "owner",
+  "phone": "555-0199",
+  "createdAt": "2026-07-12T01:59:33.000Z",
+  "garageId": 5,
+  "schemaName": "garage_5"
+}
+```
+
+##### Example D: Registration Conflict (`POST /api/auth/register`)
+**Request sent by Frontend:**
+```http
+POST /api/auth/register HTTP/1.1
+Host: baywork.api.com
+Content-Type: application/json
+
+{
+  "garageName": "Super Auto Care",
+  "ownerName": "Alex Driver",
+  "email": "owner@garage.com",
+  "phone": "555-0122",
+  "password": "Password123"
+}
+```
+
+**Response returned by Backend (Assuming email `owner@garage.com` is already registered):**
+```http
+HTTP/1.1 409 Conflict
+Content-Type: application/json; charset=utf-8
+
+{
+  "error": "Email already registered"
+}
+```
+
 
 ### Theory 2 — Express Router, handlers & middleware
 - `Router()` is a **mini-app** that groups related routes. You attach handlers with `router.post(path, handler)`.
